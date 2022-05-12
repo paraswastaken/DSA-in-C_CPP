@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void push(int st[], int s, int *t){
+void push(int *st, int s, int *t){
     if(*t < s - 1){
         int val;
         (*t)++;
@@ -13,7 +13,7 @@ void push(int st[], int s, int *t){
     }
 }
 
-void pop(int st[], int *t){
+void pop(int *st, int *t){
     if(*t<0){
         printf("Stack already Empty!!!");
     }
@@ -22,7 +22,7 @@ void pop(int st[], int *t){
     }
 }
 
-void print(int st[], int *t){
+void print(int *st, int *t){
     printf("=====\n");
     for(int i=*t; i>=0; i--){
         printf("%d\n^\n", st[i]);
