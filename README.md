@@ -1,1 +1,2 @@
-# DSA-in-C-C-
+# DSA-in-C_CPP
+Implemented stack
