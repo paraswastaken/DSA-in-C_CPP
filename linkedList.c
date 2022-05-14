@@ -90,13 +90,25 @@ void delete_from_pos(int pos){
     free(temp2);
 }
 
+void reverse_LL(){
+    Node* t1;
+    Node* t2;
+    t1 = head->next;
+    head->next=NULL;
+    while(t1 != NULL){
+        t2 = t1->next;
+        t1->next = head;
+        head = t1;
+        t1 = t2;
+    }
+}
 
 void main(){
     int val, sw, pos;
     head = NULL;
     do
     {
-        printf("Enter your choice:\n1.Insert at End 2.Insert at beginning 3.Insert at Position\n4.Delete from position 5.Print the List 6.Exit\n");
+        printf("Enter your choice:\n1.Insert at End 2.Insert at beginning 3.Insert at Position\n4.Delete from position 5.Print the List 6.Reverse LinkeList 7.Exit\n");
         scanf("%d", &sw);
         switch (sw)
         {
@@ -126,11 +138,14 @@ void main(){
                 printLL();
                 break;
             case 6:
+                reverse_LL();
+                break;
+            case 7:
                 printf("EXITING!!!!\n");
                 break;
             default:
                 printf("Enter Valid Choice!!!!\n");
                 break;
         }
-    } while (sw != 6);
+    } while (sw != 7);
 }
