@@ -38,27 +38,23 @@ void insert_at_pos(int dat, int pos){
     temp = (Node*)malloc(sizeof(Node));
     temp->data = dat;
     temp->next = NULL;
-    if(pos == 1){
-        insert_at_beginning(dat);
+
+    int flag = 0;
+    Node* tmp2 = head;
+    while(pos-2 > 0){
+        if(tmp2->next == NULL){
+            printf("Invalid Position\n");
+            pos = 2;
+            flag = 1;
+        }
+        else{
+            tmp2 = tmp2->next;
+            pos--;
+        }
     }
-    else{
-        int flag = 0;
-        Node* tmp2 = head;
-        while(pos-2 != 0){
-            if(tmp2->next == NULL){
-                printf("Invalid Position\n");
-                pos = 2;
-                flag = 1;
-            }
-            else{
-                tmp2 = tmp2->next;
-                pos--;
-            }
-        }
-        if(flag != 1){
-            temp->next=tmp2->next;
-            tmp2->next=temp;
-        }
+    if(flag != 1){
+        temp->next=tmp2->next;
+        tmp2->next=temp;
     }
 }
 
@@ -79,6 +75,28 @@ void printLL(){
     }
 }
 
+void delete_from_pos(int pos){
+    int flag = 0;
+    Node* temp = head;
+    Node* temp2;
+    while(pos-2 > 0){
+        if(temp->next->next == NULL){
+            printf("Invalid Position\n");
+            pos = 2;
+            flag = 1;
+        }
+        else{
+            temp = temp->next;
+            pos--;
+        }
+    }
+    if(flag != 1){
+        temp2 = temp->next;
+        temp->next=temp2->next;
+        temp2->next=NULL;
+        free(temp2);
+    }
+}
 
 
 void main(){
@@ -86,7 +104,7 @@ void main(){
     head = NULL;
     do
     {
-        printf("Enter your choice: 1.Insert at End 2.Insert at beginning 3.Insert at Position 4.Print 5.Exit\n");
+        printf("Enter your choice:\n1.Insert at End 2.Insert at beginning 3.Insert at Position\n4.Delete from position 5.Print the List 6.Exit\n");
         scanf("%d", &sw);
         switch (sw)
         {
@@ -108,14 +126,19 @@ void main(){
                 insert_at_pos(val, pos);
                 break;
             case 4:
-                printLL();
+                printf("Enter position to be deleted from:\n");
+                scanf("%d", &pos);
+                delete_from_pos(pos);
                 break;
             case 5:
+                printLL();
+                break;
+            case 6:
                 printf("EXITING!!!!\n");
                 break;
             default:
                 printf("Enter Valid Choice!!!!\n");
                 break;
         }
-    } while (sw != 5);
+    } while (sw != 6);
 }
