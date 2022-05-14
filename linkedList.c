@@ -27,14 +27,18 @@ void insert(int dat){
 
 void printLL(){
     Node* temp = head;
-    if(head = NULL){
+    if(head == NULL){
         printf("Linked List is empty\n");
     }
     else{
         while(temp != NULL){
-            printf("%d ", temp->data);
+            printf("%d", temp->data);
+            if(temp->next != NULL){
+                printf(" -> ");
+            }
             temp = temp->next;
         }
+        printf("\n");
     }
 }
 
