@@ -39,23 +39,19 @@ void insert_at_pos(int dat, int pos){
     temp->data = dat;
     temp->next = NULL;
 
-    int flag = 0;
     Node* tmp2 = head;
     while(pos-2 > 0){
         if(tmp2->next == NULL){
             printf("Invalid Position\n");
-            pos = 2;
-            flag = 1;
+            return;
         }
         else{
             tmp2 = tmp2->next;
             pos--;
         }
     }
-    if(flag != 1){
-        temp->next=tmp2->next;
-        tmp2->next=temp;
-    }
+    temp->next=tmp2->next;
+    tmp2->next=temp;
 }
 
 void printLL(){
@@ -76,26 +72,22 @@ void printLL(){
 }
 
 void delete_from_pos(int pos){
-    int flag = 0;
     Node* temp = head;
     Node* temp2;
     while(pos-2 > 0){
         if(temp->next->next == NULL){
             printf("Invalid Position\n");
-            pos = 2;
-            flag = 1;
+            return;
         }
         else{
             temp = temp->next;
             pos--;
         }
     }
-    if(flag != 1){
-        temp2 = temp->next;
-        temp->next=temp2->next;
-        temp2->next=NULL;
-        free(temp2);
-    }
+    temp2 = temp->next;
+    temp->next=temp2->next;
+    temp2->next=NULL;
+    free(temp2);
 }
 
 
