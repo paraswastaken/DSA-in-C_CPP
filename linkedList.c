@@ -6,7 +6,7 @@ typedef struct Node{
     struct Node* next;
 }Node;
 
-Node* head = NULL;
+Node* head;
 
 void insert(int dat){
     Node* temp;
@@ -25,23 +25,22 @@ void insert(int dat){
     }
 }
 
-void print(){
+void printLL(){
+    Node* temp = head;
     if(head = NULL){
         printf("Linked List is empty\n");
     }
     else{
-        int out;
-        Node* temp = head;
         while(temp != NULL){
-            out = temp->data;
+            printf("%d ", temp->data);
             temp = temp->next;
-            printf("%d -> ", out);
         }
     }
 }
 
 void main(){
     int val, sw;
+    head = NULL;
     do
     {
         printf("Enter your choice: 1.Insert 2.Print 3.Exit\n");
@@ -54,7 +53,7 @@ void main(){
                 insert(val);
                 break;
             case 2:
-                print();
+                printLL();
                 break;
             case 3:
                 printf("EXITING!!!!\n");
