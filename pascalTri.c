@@ -23,4 +23,5 @@ void main(){
         }
         printf("\n");
     }
+    // pascal triangle is used to find coefficients in binomial expansion 
 }
