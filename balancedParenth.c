@@ -37,7 +37,10 @@ void main(){
             push(arr[i]);
         }
         else if(arr[i] == (")" || "}" || "]")){
-            if(arr[i] != top->data){
+            if(top == NULL){
+                printf("Unbalanced parenthesis\n");
+            }
+            else if(arr[i] != top->data){
                 printf("Unbalanced parenthesis\n");
                 break;
             }
