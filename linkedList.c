@@ -107,7 +107,6 @@ void reverse_recursive(Node* n){
     if(n->next->next == NULL){
         head = n->next;
         head->next=n;
-        return;
     }
     else{
         Node* temp;
