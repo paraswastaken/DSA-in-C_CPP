@@ -9,6 +9,8 @@ typedef struct Node{
 Node* front = NULL;
 Node* rear = NULL;
 
+// Every operation on a queue in this impelementation is of linear time complexity
+
 void enqueue(int x){
     Node* temp = (Node*)malloc(sizeof(Node));
     temp->data = x;
@@ -30,6 +32,9 @@ int dequeue(){
     }
     else{
         Node* temp = front;
+        if(front == rear){
+            rear = NULL;
+        }
         front = front->next;
         int dat = temp->data;
         free(temp);
