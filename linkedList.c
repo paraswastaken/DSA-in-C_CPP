@@ -104,9 +104,8 @@ void reverse_LL(){
 }
 
 void reverse_recursive(Node* n){
-    if(n->next->next == NULL){
-        head = n->next;
-        head->next=n;
+    if(n->next == NULL){
+        head = n;
     }
     else{
         Node* temp;
