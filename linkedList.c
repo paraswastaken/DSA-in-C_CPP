@@ -115,7 +115,6 @@ void reverse_recursive(Node* n){
         reverse_recursive(temp);
         temp->next=n;
         n->next = NULL;
-        return;
     }
 }
 
