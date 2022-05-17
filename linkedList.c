@@ -103,12 +103,28 @@ void reverse_LL(){
     }
 }
 
+void reverse_recursive(Node* n){
+    if(n->next->next == NULL){
+        head = n->next;
+        head->next=n;
+        return;
+    }
+    else{
+        Node* temp;
+        temp = n->next;
+        reverse_recursive(temp);
+        temp->next=n;
+        n->next = NULL;
+        return;
+    }
+}
+
 void main(){
     int val, sw, pos;
     head = NULL;
     do
     {
-        printf("Enter your choice:\n1.Insert at End 2.Insert at beginning 3.Insert at Position\n4.Delete from position 5.Print the List 6.Reverse LinkeList 7.Exit\n");
+        printf("Enter your choice:\n1.Insert at End 2.Insert at beginning 3.Insert at Position 4.Delete from position\n5.Print the List 6.Reverse LinkeList 7.Reverse Recursively 8.Exit\n");
         scanf("%d", &sw);
         switch (sw)
         {
@@ -141,11 +157,14 @@ void main(){
                 reverse_LL();
                 break;
             case 7:
+                reverse_recursive(head);
+                break;
+            case 8:
                 printf("EXITING!!!!\n");
                 break;
             default:
                 printf("Enter Valid Choice!!!!\n");
                 break;
         }
-    } while (sw != 7);
+    } while (sw != 8);
 }
