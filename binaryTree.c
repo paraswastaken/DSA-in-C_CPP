@@ -18,12 +18,13 @@ Node* createNode(int dat){
 }
 
 void insert(int dat){
-    if(root == NULL){
+    temp = NULL;
+    
+    if(temp == NULL){
         temp = createNode(dat);
-        root = temp;
     }
     else if(temp->data < root->data){
-        
+
     }
 }
 
