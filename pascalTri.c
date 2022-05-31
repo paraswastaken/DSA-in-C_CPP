@@ -8,18 +8,17 @@ void main(){
     scanf("%d", &val);
 
     for(i=0;i<val;i++){
-        ar[i][0] = 1;
-    }
-
-    for(i=1;i<val;i++){
-        for(j=1;j<val;j++){
-            ar[i][j] = ar[i-1][j-1] + ar[i-1][j];
+        for(j=0;j<=i;j++){
+            if(i==0||i==j){
+                ar[i][j]=1;
+                continue;
+            }
+            ar[i][j]=ar[i-1][j]+ar[i-1][j-1];
         }
     }
-    printf("\n");
     for(i=0;i<val;i++){
-        for(j=0;j<val;j++){
-            printf("%d      ", ar[i][j]);
+        for(j=0;j<=i;j++){
+            printf("%d\t", ar[i][j]);
         }
         printf("\n");
     }
