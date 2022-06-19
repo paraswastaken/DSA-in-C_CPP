@@ -18,27 +18,29 @@ node* newNode(int val){
     return temp;
 }
 
-void insert(int val, node* cNode){
-    if(cNode->data<val){
-        if(cNode->right==NULL){
-            cNode->right=newNode(val);
-            return;
-        }
-        else{
-            insert(val, cNode->right);
-        }
+node* insert(node* cNode, int val){
+    if(cNode==NULL){
+        cNode = newNode(val);
+    }
+    else if(cNode->data<=val){
+        cNode->right = insert(cNode->right,val);
     }
     else{
-         if(cNode->left==NULL){
-            cNode->left=newNode(val);
-            return;
-        }
-        else{
-            insert(val, cNode->left);
-        }
+        cNode->left = insert(cNode->left,val);
     }
+    return cNode;
+}
+
+bool search(node* cNode, int dat){
+    if(cNode==NULL) return false;
+    else if(cNode->data==dat) return true;
+    else if(cNode->data<=dat) return search(cNode->right,dat);
+    else return search(cNode->left, dat);
 }
 
 int main(){
-    
+    root = insert(root, 15);
+    root = insert(root, 10);
+    root = insert(root, 21);
+    cout<<search(root, 21);
 }
