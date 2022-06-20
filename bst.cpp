@@ -91,6 +91,16 @@ void invertBT(node* cNode){
     return;
 }
 
+int bstTrack=0;
+
+bool isBST(node* cNode){
+    if(cNode==NULL)return true;
+    if(!isBST(cNode->left)) return false;
+    if(cNode->data<bstTrack) return false;
+    bstTrack = cNode->data;
+    if(!isBST(cNode->right)) return false;
+    return true;
+}
 
 int main(){
 //    root = insert(root, 15);
@@ -98,7 +108,7 @@ int main(){
 //    root = insert(root, 21);
     int sw, val;
     do {
-        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order 7. Invert Tree 8. Exit"<<endl;
+        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order 7. Check BST 8. Invert Tree 9. Exit"<<endl;
         cin>>sw;
         switch(sw){
             case 1:
@@ -129,13 +139,22 @@ int main(){
                 cout<<endl;
                 break;
             case 7:
-                invertBT(root);
+                if(isBST(root)) {
+                    cout<<"It's a Binary Search Tree!"<<endl;
+                }
+                else {
+                    cout<<"It's not a Binary Search Tree!"<<endl;
+                }
+                bstTrack = 0;
                 break;
             case 8:
+                invertBT(root);
+                break;
+            case 9:
                 cout<<"Exiting!!!"<<endl;
                 break;
             default:
                 cout<<"Enter valid option"<<endl;
         }
-    }while(sw!=8);
+    }while(sw!=9);
 }
