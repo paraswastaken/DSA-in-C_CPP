@@ -102,13 +102,29 @@ bool isBST(node* cNode){
     return true;
 }
 
+int count=-1;
+
+void print2D(node* cNode){
+    if(cNode==NULL) return;
+    count++;
+    print2D(cNode->right);
+    for(int i=0; i<count; i++){
+        cout<<"       ";
+    }
+    cout<<cNode->data;
+    cout<<endl<<endl;
+    print2D(cNode->left);
+    count--;
+    return;
+}
+
 int main(){
 //    root = insert(root, 15);
 //    root = insert(root, 10);
 //    root = insert(root, 21);
     int sw, val;
     do {
-        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order 7. Check BST 8. Invert Tree 9. Exit"<<endl;
+        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order 7. Check BST 8. Invert Tree 9. Print 2D 10. Exit"<<endl;
         cin>>sw;
         switch(sw){
             case 1:
@@ -151,10 +167,13 @@ int main(){
                 invertBT(root);
                 break;
             case 9:
+                print2D(root);
+                break;
+            case 10:
                 cout<<"Exiting!!!"<<endl;
                 break;
             default:
                 cout<<"Enter valid option"<<endl;
         }
-    }while(sw!=9);
+    }while(sw!=10);
 }
