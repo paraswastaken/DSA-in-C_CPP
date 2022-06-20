@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 
 using namespace::std;
 
@@ -62,6 +63,24 @@ void postOrder(node* cNode){
     return;
 }
 
+void levelOrder(node* cNode){
+    if(cNode==NULL) return;
+    queue<node*> Q;
+    Q.push(cNode);
+    while(!Q.empty()){
+        node* current = Q.front();
+        cout<<current->data<<" ";
+        if(current->left){
+            Q.push(current->left);
+        }
+        if(current->right){
+            Q.push(current->right);
+        }
+        Q.pop();
+    }
+    return;
+}
+
 void invertBT(node* cNode){
     if(cNode==NULL) return;
     invertBT(cNode->left);
@@ -72,13 +91,14 @@ void invertBT(node* cNode){
     return;
 }
 
+
 int main(){
 //    root = insert(root, 15);
 //    root = insert(root, 10);
 //    root = insert(root, 21);
     int sw, val;
     do {
-        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Invert Tree 7. Exit"<<endl;
+        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order 7. Invert Tree 8. Exit"<<endl;
         cin>>sw;
         switch(sw){
             case 1:
@@ -105,13 +125,16 @@ int main(){
                 cout<<endl;
                 break;
             case 6:
-                invertBT(root);
+                levelOrder(root);
                 break;
             case 7:
+                invertBT(root);
+                break;
+            case 8:
                 cout<<"Exiting!!!"<<endl;
                 break;
             default:
                 cout<<"Enter valid option"<<endl;
         }
-    }while(sw!=7);
+    }while(sw!=8);
 }
