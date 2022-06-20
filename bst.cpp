@@ -118,13 +118,46 @@ void print2D(node* cNode){
     return;
 }
 
+node* delMain(node* rootT, int val){
+    node* temp;
+    if(rootT==NULL) return rootT;
+    else if(rootT->data>val) rootT->left = delMain(rootT->left, val);
+    else if(rootT->data<val) rootT->right = delMain(rootT->right, val);
+    else if(rootT->data==val){
+        if(rootT->left==NULL && rootT->right==NULL){
+            delete rootT;
+            return NULL;
+        }
+        else if(rootT->left==NULL){
+            temp = rootT;
+            rootT = rootT->right;
+            delete temp;
+        }
+        else if(rootT->right==NULL){
+            temp = rootT;
+            rootT = rootT->left;
+            delete temp;
+        }
+        else{
+            temp = rootT->right;
+            while(temp->left!=NULL){
+                temp=temp->left;
+            }
+            rootT->data=temp->data;
+            rootT->right = delMain(rootT->right, temp->data);
+        }
+    }
+    return rootT;
+}
+
+
 int main(){
 //    root = insert(root, 15);
 //    root = insert(root, 10);
 //    root = insert(root, 21);
     int sw, val;
     do {
-        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order 7. Check BST 8. Invert Tree 9. Print 2D 10. Exit"<<endl;
+        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order 7. Check BST 8. Invert Tree 9. Print 2D 10. Delete a value 11. Exit"<<endl;
         cin>>sw;
         switch(sw){
             case 1:
@@ -135,7 +168,7 @@ int main(){
             case 2:
                 cout<<"Enter value to search:"<<endl;
                 cin>>val;
-                cout<<search(root, val)?"The value is present!":"Value is not present!!";
+                search(root, val)?cout<<"The value is present!":cout<<"Value is not present!!";
                 cout<<endl;
                 break;
             case 3:
@@ -170,10 +203,15 @@ int main(){
                 print2D(root);
                 break;
             case 10:
+                cout<<"Enter value to delete:"<<endl;
+                cin>>val;
+                root = delMain(root, val);
+                break;
+            case 11:
                 cout<<"Exiting!!!"<<endl;
                 break;
             default:
                 cout<<"Enter valid option"<<endl;
         }
-    }while(sw!=10);
+    }while(sw!=11);
 }
