@@ -126,6 +126,7 @@ int main(){
                 break;
             case 6:
                 levelOrder(root);
+                cout<<endl;
                 break;
             case 7:
                 invertBT(root);
