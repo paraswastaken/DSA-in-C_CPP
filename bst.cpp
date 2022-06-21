@@ -126,6 +126,36 @@ void print2D(node* cNode){
     return;
 }
 
+node* getSuccessor(node* cNode, int val){
+    node* successor=NULL;
+    while(cNode->data!=val){
+        if(cNode->data<val) cNode=cNode->right;
+        else{
+            successor = cNode;
+            cNode = cNode->left;
+        }
+    }
+    return successor;
+}
+
+int inOrderSuccessor(node* cNode, int val){
+    if(cNode==NULL) return 0;
+    while(cNode!=NULL && cNode->data!=val){
+        if(cNode->data<val) cNode=cNode->right;
+        else cNode=cNode->left;
+    }
+    if(cNode==NULL) return 0;
+    else if(cNode->right){
+        cNode=cNode->right;
+        while(cNode->left!=NULL){
+            cNode=cNode->left;
+        }
+        return cNode->data;
+    }
+    else if(getSuccessor(root, val)) return getSuccessor(root, val)->data;
+    else return 0;
+}
+
 node* delMain(node* rootT, int val){
     node* temp;
     if(rootT==NULL) return rootT;
@@ -165,7 +195,7 @@ int main(){
 //    root = insert(root, 21);
     int sw, val;
     do {
-        cout<<"Enter your choice: 1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order 7. Check BST 8. Invert Tree 9. Print 2D 10. Delete a value 11. Exit"<<endl;
+        cout<<"Enter your choice:"<<endl<<"1. Insert 2. Search 3. Print Inorder 4. Print Preorder 5. Print Postorder 6. Print Level Order"<<endl<<"7. Check BST 8. Invert Tree 9. Print 2D 10. Delete a value 11. Find Inorder Successor 12. Exit"<<endl;
         cin>>sw;
         switch(sw){
             case 1:
@@ -216,10 +246,16 @@ int main(){
                 root = delMain(root, val);
                 break;
             case 11:
+                cout<<"Enter value to find its inorder successor:"<<endl;
+                cin>>val;
+                if(inOrderSuccessor(root, val)==0) cout<<"No Inorder Successor"<<endl;
+                else cout<<"Inorder Successor is: "<<inOrderSuccessor(root, val)<<endl;
+                break;
+            case 12:
                 cout<<"Exiting!!!"<<endl;
                 break;
             default:
                 cout<<"Enter valid option"<<endl;
         }
-    }while(sw!=11);
+    }while(sw!=12);
 }
