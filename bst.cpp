@@ -109,10 +109,18 @@ void print2D(node* cNode){
     count++;
     print2D(cNode->right);
     for(int i=0; i<count; i++){
-        cout<<"       ";
+        cout<<"        ";
     }
+    cout<<"------>";
     cout<<cNode->data;
-    cout<<endl<<endl;
+    cout<<endl;
+//    for(int i=0; i<count-1; i++){
+//        cout<<"        ";
+//    }
+    cout<<endl;
+//    for(int i=0; i<count-1; i++){
+//        cout<<"        ";
+//    }
     print2D(cNode->left);
     count--;
     return;
